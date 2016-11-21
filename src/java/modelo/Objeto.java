@@ -5,40 +5,32 @@
  */
 package modelo;
 
-import java.sql.Date;
+
 
 /**
  *
  * @author Leonardo Silva
  */
 public class Objeto {
-    private int id;
-    private Date dataEntrega;
-    private Date dataDevolucao;
+    private int idObjeto;
+    private String status;
     private String descricao;
+    private byte[] imagem;
 
-    public int getId() {
-        return id;
+    public int getIdObjeto() {
+        return idObjeto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdObjeto(int idObjeto) {
+        this.idObjeto = idObjeto;
     }
 
-    public Date getDataEntrega() {
-        return dataEntrega;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDataEntrega(Date dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
-
-    public Date getDataDevolucao() {
-        return dataDevolucao;
-    }
-
-    public void setDataDevolucao(Date dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getDescricao() {
@@ -48,5 +40,13 @@ public class Objeto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+
 }

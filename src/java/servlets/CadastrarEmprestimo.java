@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import controle.EmprestimoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,13 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Emprestimo;
 
 /**
  *
  * @author Leonardo Silva
  */
-@WebServlet(name = "CadastrarCliente", urlPatterns = {"/cadastrarcliente"})
-public class CadastrarCliente extends HttpServlet {
+@WebServlet(name = "CadastrarEmprestimo", urlPatterns = {"/emprestimo"})
+public class CadastrarEmprestimo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class CadastrarCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarCliente</title>");            
+            out.println("<title>Servlet CadastrarEmprestimo</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarCliente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CadastrarEmprestimo at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,7 +74,21 @@ public class CadastrarCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        
+        
+        Emprestimo Emprestimo = new Emprestimo();
+        
+        Emprestimo.setDataEmprestimo(request.getParameter("dataEmprestimo"));
+        Emprestimo.setDataDevolucao(request.getParameter("dataDevolucao"));
+      
+        EmprestimoImpl EmprestimoDao = new EmprestimoImpl();
+        
+          
+        
+        EmprestimoDao.salvar(Emprestimo);
+        
+         response.sendRedirect("emprestimo.jsp");
     }
 
     /**

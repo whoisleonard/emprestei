@@ -5,7 +5,7 @@
  */
 package servlets;
 
-import controle.UsuarioImpl;
+import controle.ObjetoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,14 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Usuario;
+import modelo.Objeto;
 
 /**
  *
  * @author Leonardo Silva
  */
-@WebServlet(name = "CadastrarUsuario", urlPatterns = {"/cadastrarUsuario"})
-public class CadastrarUsuario extends HttpServlet {
+@WebServlet(name = "CadastrarObjeto", urlPatterns = {"/cadastrarobjeto"})
+public class CadastrarObjeto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class CadastrarUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarUsuario</title>");            
+            out.println("<title>Servlet CadastrarObjeto</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CadastrarObjeto at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,28 +74,20 @@ public class CadastrarUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
         
-        
-        Usuario usuario = new Usuario();//cria o objeto usuario
-        
-        usuario.setLogin(request.getParameter("login"));//preenche o objeto usuario
-        usuario.setSenha(request.getParameter("senha"));
-        usuario.setNome(request.getParameter("nome"));
-        usuario.setEndereco(request.getParameter("endereco"));
-        usuario.setBairro(request.getParameter("bairro"));
-        usuario.setEmail(request.getParameter("email"));
-        usuario.setTelefone(request.getParameter("telefone"));
-        usuario.setCidade(request.getParameter("cidade"));
-        
-        UsuarioImpl UsuarioDao = new UsuarioImpl();//cria o objeto usuariodao
-        
-        //salva
-        UsuarioDao.salvar(usuario);
-         //retorna pra a tela de cadastro
-        response.sendRedirect("cadastrarobjeto.jsp");
+      Objeto objeto = new Objeto();
+      
+      objeto.setDescricao(request.getParameter("descricao"));
+      
+      ObjetoImpl ObjetoDao = new ObjetoImpl();
+      
+      ObjetoDao.salvar(objeto);
+      
+      response.sendRedirect("cadastrarobjeto.jsp");
     }
 
-   
+    
     @Override
     public String getServletInfo() {
         return "Short description";

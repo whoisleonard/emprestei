@@ -7,6 +7,7 @@ package dao;
 
 import java.util.List;
 import modelo.Usuario;
+
 /**
  *
  * @author Leonardo Silva
@@ -18,6 +19,6 @@ public interface UsuarioDao {
     public void remover(Usuario u);
     public List<Usuario> getListAll();
     public Usuario findById(int id);
-    
-    
+
+    public void cadastrar(Usuario Usuario);
 }

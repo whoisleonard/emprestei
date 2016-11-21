@@ -6,17 +6,17 @@
 package dao;
 
 import java.util.List;
-import modelo.Cliente;
+import modelo.Emprestimo;
+
 /**
  *
  * @author Leonardo Silva
  */
-public interface ClienteDao {
+public interface EmprestimoDao {
     
-    public void salvar(Cliente c);
-    public void atualizar(Cliente c);
-    public void remover(Cliente c);
-    public List<Cliente> getListAll();
-    public Cliente findById(int id);
-    
+    public void salvar(Emprestimo e);
+    public void atualizar(Emprestimo e);
+    public void remover(Emprestimo e);
+    public List<Emprestimo> getListAll();
+    public Emprestimo findById(int id);
 }
