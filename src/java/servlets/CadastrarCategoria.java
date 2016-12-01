@@ -5,7 +5,7 @@
  */
 package servlets;
 
-import controle.EmprestimoImpl;
+import controle.CategoriaImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,14 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Emprestimo;
+import modelo.Categoria;
 
 /**
  *
  * @author Leonardo Silva
  */
-@WebServlet(name = "CadastrarEmprestimo", urlPatterns = {"/emprestimo"})
-public class CadastrarEmprestimo extends HttpServlet {
+@WebServlet(name = "CadastrarCategoria", urlPatterns = {"/categoria"})
+public class CadastrarCategoria extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class CadastrarEmprestimo extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CadastrarEmprestimo</title>");            
+            out.println("<title>Servlet CadastrarCategoria</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CadastrarEmprestimo at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CadastrarCategoria at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,21 +74,27 @@ public class CadastrarEmprestimo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
-        Emprestimo Emprestimo = new Emprestimo();
-        
-        Emprestimo.setDataEmprestimo(request.getParameter("dataEmprestimo"));
-        Emprestimo.setDataDevolucao(request.getParameter("dataDevolucao"));
       
-        EmprestimoImpl EmprestimoDao = new EmprestimoImpl();
+        Categoria Categoria = new Categoria();
         
-          
+         int idCategoria=0;
+        if(request.getParameter("id") != null)
+            idCategoria = Integer.valueOf(request.getParameter("id"));
         
-        EmprestimoDao.salvar(Emprestimo);
+        Categoria.setDescricao(request.getParameter("descricao"));
         
-         response.sendRedirect("emprestimo.jsp");
+        CategoriaImpl CategoriaDao = new CategoriaImpl();
+        
+        //salva ou altera
+        if(idCategoria != 0){
+            Categoria.setIdCategoria(idCategoria);
+            CategoriaDao.atualizar(Categoria);
+        }else
+            CategoriaDao.salvar(Categoria);
+        //retorna pra a tela de cadastro
+        
+        response.sendRedirect("cadastrarobjeto.jsp");
+        
     }
 
     /**

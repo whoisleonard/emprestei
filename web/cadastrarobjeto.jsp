@@ -17,11 +17,18 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
+
       <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
    <div class="navbar-header">
    
     <a class="navbar-brand" href="#"> Sistema Emprestei</a>
+   </div>
+          <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+     <li><a href="index.html">Inicio</a></li>
+     <li><a href="listaUsuario.jsp">Lista</a></li>
+    </ul>
    </div>
   </div>
        </nav>
@@ -31,13 +38,29 @@
        <div>
             <form action="cadastrarobjeto" method="post">
                 
+
+
+                           <br><br>   
+                 <div class="row">
+                      <div class="form-group col-md-2">   
+                          <label> Data de Emprestimo:</label>
+                          <input type="date" class=" form-control" name="dataEmprestimo"placeholder="dd/mm/aaaa"/>
+                         
+                      </div>
+                   <div class="form-group col-md-2">   
+                          <label> Data de Devolução:</label>
+                           <input type="date" class=" form-control" name="dataDevolucao"placeholder="dd/mm/aaaa"/>
+                           
+                      </div>
+              </div>
+                  <br><br>
                 
                 <p><b>Descrição:</b></p>
                 <textarea name="descricao" cols="26" rows="7" placeholder="Descreva aqui objeto"></textarea>
                 
-                <center>
-                <input type="file" name="imagem">
-                </center>
+             
+                 <br><br>
+                
                 
                  <a href="index.html" class="btn btn-default">Cancelar</a> 
          <button type="submit" class="btn btn-primary">Salvar</button> 

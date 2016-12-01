@@ -73,16 +73,24 @@ public class UsuarioImpl implements UsuarioDao{
     }
 
     @Override
-    public void remover(Usuario u) {
+    public Boolean remover(Usuario u) {
          String sql = "delete from usuario where idUser = ?";
+         Boolean retorno = false;
             try {
                 stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, u.getIdUser());
                 
-                stmt.execute();
+              if( stmt.executeUpdate()> 0){
+                  
+                  retorno = true;
+              }
+                  
+                  
             } catch (SQLException ex) {
                 ex.printStackTrace();
+                retorno = false;
             }
+            return retorno;
     }
 
     @Override
@@ -90,7 +98,7 @@ public class UsuarioImpl implements UsuarioDao{
         List<Usuario> list = new ArrayList<Usuario>();
        
 		try {
-			String sql = "select login, senha, nome, endereco, bairro, email, telefone, cidade from usuario";
+			String sql = "select idUser, login, senha, nome, endereco, bairro, email, telefone, cidade from usuario";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
                         
@@ -98,14 +106,15 @@ public class UsuarioImpl implements UsuarioDao{
 				Usuario Usuario = new Usuario();
                                 
 				
-				Usuario.setLogin(notNull(rs.getString(1)));
-                                Usuario.setSenha(notNull(rs.getString(2)));
-				Usuario.setNome(notNull(rs.getString(3)));
-                                Usuario.setEndereco(notNull(rs.getString(4)));
-                                Usuario.setBairro(notNull(rs.getString(5)));
-                                Usuario.setEmail(notNull(rs.getString(6)));
-                                Usuario.setTelefone(notNull(rs.getString(7)));
-                                Usuario.setCidade(notNull(rs.getString(8)));
+				Usuario.setIdUser(rs.getInt(1));
+				Usuario.setLogin(notNull(rs.getString(2)));
+                                Usuario.setSenha(notNull(rs.getString(3)));
+				Usuario.setNome(notNull(rs.getString(4)));
+                                Usuario.setEndereco(notNull(rs.getString(5)));
+                                Usuario.setBairro(notNull(rs.getString(6)));
+                                Usuario.setEmail(notNull(rs.getString(7)));
+                                Usuario.setTelefone(notNull(rs.getString(8)));
+                                Usuario.setCidade(notNull(rs.getString(9)));
                                 
 				list.add(Usuario);
 			}
@@ -115,24 +124,31 @@ public class UsuarioImpl implements UsuarioDao{
                 return list;
     }
 
-    @Override
-    public Usuario findById(int idUser) {
-         String sql = "select  nome, telefone from usuario where idUser = ?";
-                Usuario Usuario = new Usuario();
+     @Override
+   public Usuario findById(int id) {
+         String sql = "select idUser, login, senha, nome, endereco, bairro, email, telefone, cidade from usuario where id = ?";
+   
+                Usuario  Usuario= new Usuario();
                 try{
                     stmt = conn.prepareStatement(sql);
-                    stmt.setInt(1, idUser);
+                    stmt.setInt(1, id);
+                    
                     rs = stmt.executeQuery();
-                    rs.next();
+                     rs.next();
+                        
                    
-                    Usuario.setLogin(notNull(rs.getString(1)));
-                    Usuario.setSenha(notNull(rs.getString(2)));
-                    Usuario.setNome(notNull(rs.getString(3)));
-                    Usuario.setEndereco(notNull(rs.getString(4)));
-                    Usuario.setBairro(notNull(rs.getString(5)));
-                    Usuario.setEmail(notNull(rs.getString(6)));
-                    Usuario.setTelefone(notNull(rs.getString(7)));
-                    Usuario.setCidade(notNull(rs.getString(8)));
+                   
+                    Usuario.setIdUser(rs.getInt(1));
+                    Usuario.setLogin(notNull(rs.getString(2)));
+                    Usuario.setSenha(notNull(rs.getString(3)));
+                    Usuario.setNome(notNull(rs.getString(4)));
+                    Usuario.setEndereco(notNull(rs.getString(5)));
+                    Usuario.setBairro(notNull(rs.getString(6)));
+                    Usuario.setEmail(notNull(rs.getString(7)));
+                    Usuario.setTelefone(notNull(rs.getString(8)));
+                    Usuario.setCidade(notNull(rs.getString(9)));
+                    
+                    
                    
                 }catch (SQLException e) {
 			e.printStackTrace();

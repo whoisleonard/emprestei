@@ -44,7 +44,7 @@ public class CategoriaImpl implements CategoriaDao{
 
     @Override
     public void atualizar(Categoria c) {
-        String sql = "update categoria set descricao = ? "  + "where idCategoria = ?";
+        String sql = "update categoria set descricao = ? "  + "where id = ?";
          try {
                 stmt = conn.prepareStatement(sql);
                 
@@ -60,7 +60,7 @@ public class CategoriaImpl implements CategoriaDao{
 
     @Override
     public void remover(Categoria c) {
-        String sql = "delete from categoria where idCategroia = ?";
+        String sql = "delete from categoria where id = ?";
             try {
                 stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, c.getIdCategoria());
@@ -76,15 +76,15 @@ public class CategoriaImpl implements CategoriaDao{
         List<Categoria> list = new ArrayList<Categoria>();
        
 		try {
-			String sql = "select descricao from categoria";
+			String sql = "select idCategoria, descricao from categoria";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
                         
 			while(rs.next()){
 				Categoria Categoria = new Categoria();
                                 
-				
-				Categoria.setDescricao(notNull(rs.getString(1)));
+				 Categoria.setIdCategoria((rs.getInt(1)));
+				Categoria.setDescricao(notNull(rs.getString(2)));
                              
                                 
 				list.add(Categoria);
@@ -97,15 +97,16 @@ public class CategoriaImpl implements CategoriaDao{
 
     @Override
     public Categoria findById(int idCategoria) {
-       String sql = "select descricao from categoria where idCategoria = ?";
+       String sql = "select idCategoria, descricao from categoria where id = ?";
                Categoria Categoria = new Categoria();
                 try{
                     stmt = conn.prepareStatement(sql);
                     stmt.setInt(1, idCategoria);
                     rs = stmt.executeQuery();
                     rs.next();
-                   
-                   Categoria.setDescricao(notNull(rs.getString(1)));
+                    
+                   Categoria.setIdCategoria((rs.getInt(1)));
+                   Categoria.setDescricao(notNull(rs.getString(2)));
                    
                    
                 }catch (SQLException e) {

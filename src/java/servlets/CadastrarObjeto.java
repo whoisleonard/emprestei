@@ -5,7 +5,9 @@
  */
 package servlets;
 
+import controle.CategoriaImpl;
 import controle.ObjetoImpl;
+import controle.UsuarioImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,7 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import modelo.Objeto;
+
 
 /**
  *
@@ -74,20 +78,33 @@ public class CadastrarObjeto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         
-      Objeto objeto = new Objeto();
-      
-      objeto.setDescricao(request.getParameter("descricao"));
-      
-      ObjetoImpl ObjetoDao = new ObjetoImpl();
-      
-      ObjetoDao.salvar(objeto);
-      
-      response.sendRedirect("cadastrarobjeto.jsp");
+        Objeto Objeto = new Objeto();
+        
+        Objeto.setDescricao(request.getParameter("descricao"));
+        Objeto.setDataEmprestimo(request.getParameter("dataEmprestimo"));
+        Objeto.setDataDevolucao(request.getParameter("dataDevolucao"));
+        CategoriaImpl categoria = new CategoriaImpl();
+       int idCategoria = Integer.valueOf(request.getParameter("idCategoria"));
+       
+       UsuarioImpl usuario = new UsuarioImpl();
+       int idUser = Integer.valueOf(request.getParameter("idUser"));
+        
+        ObjetoImpl ObjetoDao = new ObjetoImpl();
+        
+         Objeto.getCategoria().setIdCategoria(idCategoria);
+         Objeto.getUsuario().setIdUser(idUser);
+         
+        ObjetoDao.salvar(Objeto);
+        
+        response.sendRedirect("categoria.jsp");
     }
 
-    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";

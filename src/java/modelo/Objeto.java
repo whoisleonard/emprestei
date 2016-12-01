@@ -7,15 +7,23 @@ package modelo;
 
 
 
+
+
+
+
 /**
  *
  * @author Leonardo Silva
  */
 public class Objeto {
+    
     private int idObjeto;
-    private String status;
+   
     private String descricao;
-    private byte[] imagem;
+    private String dataEmprestimo;
+    private String dataDevolucao;
+    private Categoria categoria;
+    private Usuario usuario;
 
     public int getIdObjeto() {
         return idObjeto;
@@ -25,13 +33,7 @@ public class Objeto {
         this.idObjeto = idObjeto;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+   
 
     public String getDescricao() {
         return descricao;
@@ -41,12 +43,42 @@ public class Objeto {
         this.descricao = descricao;
     }
 
-    public byte[] getImagem() {
-        return imagem;
+    public String getDataEmprestimo() {
+        return dataEmprestimo;
     }
 
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
+    public void setDataEmprestimo(String dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
     }
+
+    public String getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public void setDataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+    
+
+   
 
 }
+   

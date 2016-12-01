@@ -16,7 +16,7 @@ public interface UsuarioDao {
     
     public void salvar(Usuario u);
     public void atualizar(Usuario u);
-    public void remover(Usuario u);
+    public Boolean remover(Usuario u);
     public List<Usuario> getListAll();
     public Usuario findById(int id);
 

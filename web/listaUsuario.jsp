@@ -24,6 +24,11 @@
    
     <a class="navbar-brand" href="#"> Sistema Emprestei</a>
    </div>
+      <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+     <li><a href="index.html">Inicio</a></li>
+    </ul>
+   </div>
   </div>
        </nav>
        <br> <br>
@@ -39,6 +44,7 @@
                     <td>ID</td>
                     <td>LOGIN</td>
                     <td>NOME</td>
+                    <td>ENDEREÇO</td>
                     <td>TELEFONE</td>
                     <td>CIDADE</td>
                     <td>BAIRRO</td>
@@ -57,12 +63,14 @@
                             <td><%= Usuario.getIdUser() %></td>
                             <td><%= Usuario.getLogin()%></td>
                             <td><%= Usuario.getNome()%></td>
+                            <td><%= Usuario.getEndereco()%></td>
                             <td><%= Usuario.getTelefone()%></td>
                             <td><%= Usuario.getCidade()%></td>
                             <td><%= Usuario.getBairro()%></td>
                              <td><%= Usuario.getEmail()%></td>
-                            <td><a href="editaUsuario.jsp?id=<%= Usuario.getIdUser()%>"class="btn btn-warning btn-xs">editar</a>
-                            <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+                            <td><a href="editaUsuario.jsp?idUser=<%= Usuario.getIdUser()%>"class="btn btn-warning btn-xs">editar</a>
+                           <td><a href="excluirUsuario.jsp?idUser=<%= Usuario.getIdUser()%>"class="btn btn-danger btn-xs">excluir</a>
+                              
                             </td>
                         </tr>
                         <%
@@ -73,24 +81,11 @@
          
         </div>
         </div>
-            <!-- Modal -->
-<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Excluir Item</h4>
-      </div>
-      <div class="modal-body">
-        Deseja realmente excluir este item?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Sim</button>
-	<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
-      </div>
-    </div>
-  </div>
-</div>
+           
+    
+  
+  
+
              <script src="js/jquery.min.js"></script>
           <script src="js/bootstrap.min.js"></script>
   

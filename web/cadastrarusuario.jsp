@@ -23,6 +23,12 @@
    
     <a class="navbar-brand" href="#"> Sistema Emprestei</a>
    </div>
+               <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+     <li><a href="index.html">Inicio</a></li>
+     <li><a href="listaUsuario.jsp">Lista</a></li>
+    </ul>
+   </div>
   </div>
        </nav>
        <br> <br>
@@ -91,7 +97,7 @@
                 <br><br>  
                
                 <center>             
-            <a href="index.html" class="btn btn-default">Cancelar</a> <button type="submit" class="btn btn-primary">Salvar</button> <button type="reset" class="btn btn-primary">Limpar</button>
+            <a href="index.html" class="btn btn-default">Cancelar</a> <button type="submit" class="btn btn-success">Salvar</button> <button type="reset" class="btn btn-primary">Limpar</button>
                 </center>
                
             </form>

@@ -22,6 +22,12 @@
    
     <a class="navbar-brand" href="#"> Sistema Emprestei</a>
    </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+     <li><a href="index.html">Inicio</a></li>
+     <li><a href="listaUsuario.jsp">Lista</a></li>
+    </ul>
+   </div>
   </div>
        </nav>
        <br> <br>
@@ -31,7 +37,7 @@
        <form action="categoria" method="post">
            
            <b> <p>Categoria:
-<select name="descricao">
+<select name="descricao"class="btn">
 	<option value="midia"> Mídia</option>
 	<option value="roupa"> Roupas</option>
 	<option value="acessorio"> Acessórios</option>
@@ -44,8 +50,8 @@
            
            <div class="row">
              <div class="form-group col-md-12">
-           <a href="index.html" class="btn btn-default">Cancelar</a> 
-         <button type="submit" class="btn btn-primary">Salvar</button> 
+           <a href="index.html" class="btn btn-primary">Cancelar</a> 
+         <button type="submit" class="btn btn-success">Salvar</button> 
          
              </div>
            </div>

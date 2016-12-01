@@ -78,6 +78,8 @@ public class CadastrarUsuario extends HttpServlet {
         
         Usuario usuario = new Usuario();//cria o objeto usuario
         
+        
+        
         usuario.setLogin(request.getParameter("login"));//preenche o objeto usuario
         usuario.setSenha(request.getParameter("senha"));
         usuario.setNome(request.getParameter("nome"));
@@ -89,10 +91,10 @@ public class CadastrarUsuario extends HttpServlet {
         
         UsuarioImpl UsuarioDao = new UsuarioImpl();//cria o objeto usuariodao
         
-        //salva
-        UsuarioDao.salvar(usuario);
-         //retorna pra a tela de cadastro
-        response.sendRedirect("cadastrarobjeto.jsp");
+     
+            UsuarioDao.salvar(usuario);
+        //retorna pra a tela de cadastro
+        response.sendRedirect("listaUsuario.jsp");
     }
 
    
